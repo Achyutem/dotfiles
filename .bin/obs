@@ -1,0 +1,14 @@
+#!/usr/bin/zsh
+formatted_date=$(date +"%d %B update")
+echo "updating obsidian to for $formatted_date"
+cd ~/Documents/obsidian
+git add .
+echo "Enter custom commit message"
+read commitMsg
+if [ -n "$commitMsg" ]; then
+  git commit -m "$commitMsg"
+else
+  git commit -m "$formatted_date"
+fi
+
+echo "Successfully done"
