@@ -1,0 +1,16 @@
+#!/usr/bin/zsh
+
+if [ $# -eq 0 ]; then
+    echo "No wallpaper file provided."
+    echo "Usage: $0 <wallpaper file>"
+    exit 1
+fi
+
+thewall=$1
+cp $thewall ~/.config/bspwm/
+
+filename=$(basename "$thewall")
+
+sed -i "20s|.*|feh --bg-scale ~/.config/bspwm/$filename \\&|" ~/.config/bspwm/autostart.sh
+
+echo "Wallpaper copied to ~/.config/bspwm/"
