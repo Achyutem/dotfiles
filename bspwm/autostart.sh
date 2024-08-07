@@ -11,6 +11,8 @@ $HOME/.config/polybar/launch.sh &
 
 keybLayout=$(setxkbmap -v | awk -F "+" '/symbols/ {print $2}')
 
+#replace caplock with escape
+setxkbmap -option caps:escape &
 if [ $keybLayout = "be" ]; then
   run sxhkd -c ~/.config/bspwm/sxhkd/sxhkdrc-azerty &
 else
