@@ -12,15 +12,14 @@ $HOME/.config/polybar/launch.sh &
 keybLayout=$(setxkbmap -v | awk -F "+" '/symbols/ {print $2}')
 
 #replace caplock with escape
-setxkbmap -option caps:escape &
 if [ $keybLayout = "be" ]; then
   run sxhkd -c ~/.config/bspwm/sxhkd/sxhkdrc-azerty &
 else
   run sxhkd -c ~/.config/bspwm/sxhkd/sxhkdrc &
 fi
 
+setxkbmap -option caps:escape &
 feh --bg-scale ~/.config/bspwm/green.jpg &
-# feh --bg-scale ~/.config/bspwm/archLinux.jpg &
 redshift -P -O 4500 &
 xsetroot -cursor_name left_ptr &
 numlockx on &
