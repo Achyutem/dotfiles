@@ -1,53 +1,87 @@
-# export ZSH=/usr/share/oh-my-zsh/
-eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/zen.toml)"
-ZSH_THEME="common"
-
-if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  eval "$(oh-my-posh init zsh)"
+if [ -n "$TTY" ]; then
+  export GPG_TTY=$(tty)
+else
+  export GPG_TTY="$TTY"
 fi
 
+PATH="$HOME/.go/bin:$PATH"
+PATH="$HOME/go/bin:$PATH"
+export EDITOR=nvim
+
+# SSH_AUTH_SOCK set to GPG to enable using gpgagent as the ssh agent.
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+
+# Set the directory we want to store zinit and plugins
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+# Download Zinit, if it's not there yet
+if [ ! -d "$ZINIT_HOME" ]; then
+   mkdir -p "$(dirname $ZINIT_HOME)"
+   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+# Source/Load zinit
+source "${ZINIT_HOME}/zinit.zsh"
+
+# Add in zsh plugins
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+
+# Add in snippets
+zinit snippet OMZP::git
+zinit snippet OMZP::sudo
+zinit snippet OMZP::archlinux
+# zinit snippet OMZP::aws
+# zinit snippet OMZP::kubectl
+# zinit snippet OMZP::kubectx
+zinit snippet OMZP::command-not-found
+
+# Load completions
+autoload -Uz compinit && compinit
+
+zinit cdreplay -q
+
+# Prompt
+eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/tokyo.json)"
+
+# Keybindings
+bindkey -e
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+bindkey '^[w' kill-region
+
+zle_highlight+=(paste:none)
+
+# History
+HISTSIZE=5000
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+SAVEHIST=$HISTSIZE
 setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
 
-plugins=(git)
-export PAGER='most'
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
-
-setopt GLOB_DOTS
-#share commands between terminal instances or not
-unsetopt SHARE_HISTORY
-#setopt SHARE_HISTORY
-
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-
-export HISTCONTROL=ignoreboth:erasedups
-
-# Make nano the default editor
-
-export EDITOR='nvim'
-export VISUAL='nvim'
-
-#PS1='[\u@\h \W]\$ '
-
-if [ -d "$HOME/.bin" ] ;
-  then PATH="$HOME/.bin:$PATH"
-fi
-
-if [ -d "$HOME/.local/bin" ] ;
-  then PATH="$HOME/.local/bin:$PATH"
-fi
-
-### ALIASES ###
+# Shell integrations
+eval "$(fzf --zsh)"
+# eval "$(zoxide init --cmd cd zsh)"
 
 #list
+alias vim='nvim'
 alias ipconfig='ifconfig'
-alias ls='ls --color=auto'
+alias ls='ls --color'
 alias la='ls -a'
 alias ll='ls -alFh'
 alias l='ls'
@@ -67,10 +101,7 @@ alias cd..='cd ..'
 alias pdw='pwd'
 alias udpate='sudo pacman -Syyu'
 
-## Colorize the grep command output for ease of use (good for log files)##
 alias grep='grep --color=auto'
-
-#readable output
 alias df='df -h'
 
 #keyboard
@@ -100,14 +131,8 @@ alias wget="wget -c"
 #userlist
 alias userlist="cut -d: -f1 /etc/passwd | sort"
 
-#merge new settings
 alias merge="xrdb -merge ~/.Xresources"
-
-# Aliases for software managment
-# pacman
 alias pacman="sudo pacman --color auto"
-
-# paru as aur helper - updates everything
 alias pksyua="paru -Syu --noconfirm"
 alias upall="paru -Syu --noconfirm"
 
@@ -228,17 +253,6 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
-
-#remove
-alias rmgitcache="rm -r ~/.cache/git"
-
-#moving your personal files and folders from /personal to ~
-alias personal='cp -Rf /personal/* ~'
-
-#create a file called .zshrc-personal and put all your personal aliases
-#in there. They will not be overwritten by skel.
-
-[[ -f ~/.zshrc-personal ]] && . ~/.zshrc-personal
 
 setopt correct
 export SPROMPT="Correct %R to %r? [Yes, No, Abort, Edit] "
