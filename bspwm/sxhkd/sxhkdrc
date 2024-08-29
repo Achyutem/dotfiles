@@ -26,6 +26,10 @@ super + v
 super + b
 	blueberry
 
+#librewolf
+super + l
+  librewolf
+
 #discord
 super + d
 	discord
@@ -37,6 +41,10 @@ alt + space
 #Browser
 super + w
     firefox
+
+#zen Browser
+super + z 
+  zen-browser-optimized
 
 #Conky-toggle
 super + c
@@ -81,6 +89,14 @@ super + control + {Left,Right,Up,Down}
 ## Shrinking windows
 super + alt + {Left,Right,Up,Down}
 	bspc node -z {left 20 0,right -20 0,top 0 20,bottom 0 -20}	
+
+#################################################################
+# CONTROL + ALT KEYS
+#################################################################
+
+#archlinux-tweak-tool
+ctrl + alt + e
+    archlinux-tweak-tool
 
 #Spotify
 super + s
@@ -151,11 +167,18 @@ alt + 2
 super + y
     polybar-msg cmd toggle
 
+
+#################################################################
+# CTRL + ALT KEYS
+#################################################################
+
 #Picom Toggle
 ctrl + alt + o
     ~/.config/bspwm/scripts/picom-toggle.sh
 
-####### Window management ############ 
+#################################################################
+# SUPER + KEYS
+#################################################################
 
 #Toggle fullscreen of window
 alt + f
@@ -181,9 +204,17 @@ super + bracket{left,right}
 super + space
 	bspc node -t {floating,tiled}	
 
+#################################################################
+# SUPER + CONTROL KEYS
+#################################################################
+
 # Cancel preselection
 super + ctrl + space
 	bspc node --presel-dir cancel
+
+#################################################################
+# SUPER + SHIFT KEYS
+#################################################################
 
 #Reload bspwm
 super + shift + r
@@ -200,6 +231,10 @@ super + {_,shift + }{h,j,k,l}
 # Flip layout vertically/horizontally
 super + {_,shift + }a
 	bspc node @/ --flip {vertical,horizontal}
+
+#################################################################
+# SUPER + CONTROL KEYS
+#################################################################
 
 # Focus/swap windows by direction
 ctrl + {Left,Down,Up,Right}
@@ -238,9 +273,17 @@ alt + shift + Tab
 ctrl + space
 	bspc node @/ --rotate {90,-90}
 
+#################################################################
+# ALT + SHIFT KEYS
+#################################################################
+
 # Expand tiled space
 alt + shift + {h,j,k,l}
 	bspc node {@west -r -10,@south -r +10,@north -r -10,@east -r +10}
+
+#################################################################
+# CTRL + ALT KEYS
+#################################################################
 
 # Focus next/previous window
 ctrl + alt + Left
@@ -258,13 +301,36 @@ ctrl +alt + Up
 ctrl + alt + Down
 	bspc node --focus south
 
+##################   AZERTY/QWERTY/ ... KEYBOARD#################
+
+#Switch here between qwerty and azerty or make new one
 #Focus selected desktop FOR QWERTY KEYBOARDS
 super + {1-9,0}
 	bspc desktop -f '^{1-9,10}'
 
+#Focus selected desktop	FOR BELIGIAN AZERTY KEYBOARDS
+#super + {ampersand,eacute,quotedbl,apostrophe,parenleft,section,egrave,exclam,ccedilla,agrave}
+#    bspc desktop -f '^{1-9,10}'
+
+#Focus selected desktop	FOR FRNECH AZERTY KEYBOARDS
+#super + {ampersand,eacute,quotedbl,apostrophe,parenleft,minus,egrave,underscore,ccedilla,agrave}
+#    bspc desktop -f '^{1-9,10}'
+
+#################################################################
+
+#Switch here between qwerty and azerty or make new one
 #Move window to selected desktop FOR QWERTY KEYBOARDS
 super + shift + {1-9,0}
     id=$(bspc query -N -n); bspc node -d ^{1-9,10}; bspc node -f ${id}}
+
+#Move window to selected desktop FOR AZERTY KEYBOARDS
+#super + shift + {ampersand,eacute,quotedbl,apostrophe,parenleft,section,egrave,exclam,ccedilla,agrave}
+#    id=$(bspc query -N -n); bspc node -d ^{1-9,10}; bspc node -f ${id}}
+
+#################################################################
+
+
+## super & mouse scroll
 
 # Focused desktop window gap
 super + button{4,5}

@@ -1,3 +1,5 @@
+live_config_reload = true
+
 [bell]
 animation = "EaseOutExpo"
 duration = 0
@@ -38,8 +40,7 @@ white = "0xD9E0EE"
 yellow = "0xFAE3B0"
 
 [colors.primary]
-#background = "0x1E1D2F"
-background = "#111919"
+background = "0x1E1D2F"
 foreground = "0xD9E0EE"
 
 [cursor]
@@ -47,34 +48,57 @@ blink_interval = 500
 blink_timeout = 5
 unfocused_hollow = false
 
+[cursor.style]
+blinking = "Off"
+shape = "Beam"
+
 [env]
 TERM = "xterm-256color"
 
-[cursor.style]
-blinking = "On"
-shape = "Beam"
-
 [font]
-size = 15.0
+size = 15
 
 [font.bold]
-family = "JetbrainsMono Nerd Font"
+family = "JetBrainsMono Nerd Font"
 style = "Bold"
 
-[font.bold_italic]
-family = "JetbrainsMono Nerd Font"
-style = "Bold Italic"
+[font.glyph_offset]
+x = 0
+y = 0
 
 [font.italic]
-family = "Jetbrainsmono Nerd Font"
-style = "Italic"
+family = "JetBrainsMono Nerd Font"
 
 [font.normal]
-family = "JetbrainsMono Nerd Font"
+family = "JetBrainsMono Nerd Font"
 style = "Regular"
 
-[scrolling]
-history = 50000
+[font.offset]
+x = 0
+y = 0
+
+[mouse]
+hide_when_typing = true
+
+[[mouse.bindings]]
+action = "PasteSelection"
+mouse = "Middle"
+
+[selection]
+semantic_escape_chars = ",│`|:\"' ()[]{}<>"
+
+[shell]
+program = "/bin/zsh"
 
 [window]
-opacity = 0.9
+decorations = "full"
+dynamic_title = true
+startup_mode = "Maximized"
+
+[window.dimensions]
+columns = 160
+lines = 80
+
+[window.padding]
+x = 4
+y = 4
