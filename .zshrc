@@ -4,6 +4,7 @@ else
   export GPG_TTY="$TTY"
 fi
 
+PATH="$HOME/.bin:$PATH"
 PATH="$HOME/.go/bin:$PATH"
 PATH="$HOME/go/bin:$PATH"
 export EDITOR=nvim
