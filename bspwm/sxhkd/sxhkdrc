@@ -26,10 +26,6 @@ super + v
 super + b
 	blueberry
 
-#librewolf
-super + l
-  librewolf
-
 #discord
 super + d
 	discord
@@ -125,39 +121,14 @@ ctrl + super + s
 
 #Raises volume
 F3
-    amixer set Master 10%+
-
+    amixer -D pulse sset Master 10%+
 #Lowers volume
 F2
-    amixer set Master 10%-
+    amixer -D pulse sset Master 10%-
 
 #Mute
 F4
     amixer -D pulse set Master 1+ toggle
-
-#PLAY
-F7
-    playerctl play-pause
-
-#Next
-F8
-    playerctl next
-
-#previous
-F6
-    playerctl previous
-
-#Stop
-F5
-    playerctl stop
-
-#Brightness up
-alt + 1
-    xbacklight -inc 10
-
-#Brightness down
-alt + 2
-    xbacklight -dec 10
 
 #########################
 #        POLYBAR        #
@@ -308,14 +279,6 @@ ctrl + alt + Down
 super + {1-9,0}
 	bspc desktop -f '^{1-9,10}'
 
-#Focus selected desktop	FOR BELIGIAN AZERTY KEYBOARDS
-#super + {ampersand,eacute,quotedbl,apostrophe,parenleft,section,egrave,exclam,ccedilla,agrave}
-#    bspc desktop -f '^{1-9,10}'
-
-#Focus selected desktop	FOR FRNECH AZERTY KEYBOARDS
-#super + {ampersand,eacute,quotedbl,apostrophe,parenleft,minus,egrave,underscore,ccedilla,agrave}
-#    bspc desktop -f '^{1-9,10}'
-
 #################################################################
 
 #Switch here between qwerty and azerty or make new one
@@ -323,12 +286,7 @@ super + {1-9,0}
 super + shift + {1-9,0}
     id=$(bspc query -N -n); bspc node -d ^{1-9,10}; bspc node -f ${id}}
 
-#Move window to selected desktop FOR AZERTY KEYBOARDS
-#super + shift + {ampersand,eacute,quotedbl,apostrophe,parenleft,section,egrave,exclam,ccedilla,agrave}
-#    id=$(bspc query -N -n); bspc node -d ^{1-9,10}; bspc node -f ${id}}
-
 #################################################################
-
 
 ## super & mouse scroll
 
