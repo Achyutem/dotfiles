@@ -10,3 +10,8 @@ https://lukesmith.xyz/rss.xml "~Luke's Site"
 https://videos.lukesmith.xyz/feeds/videos.xml?videoChannelId=2 "~Vids - LukeSmith"
 https://scottlocklin.wordpress.com/feed/ "~Locklin's Blog"
 https://tonsky.me/atom.xml "~NikitaTonky's Blog"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC9BNGVGr_lvbn3d23ckuVOA "~Fitness - Strength Side"
+https://cprss.s3.amazonaws.com/javascriptweekly.com.xml
+https://adventures.nodeland.dev/rss
+https://fosstodon.org/@rauschma.rss "~Fossdon"
+https://overreacted.io/rss.xml
