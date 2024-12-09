@@ -36,12 +36,9 @@ bspc config presel_feedback_color	"#5e81ac"
 #bspc config urgent_border_color 	"#dd2727"
 
 #Single monitor
-# bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 bspc monitor -d 1 2 3 4 5 6
 
 #Fullscreen applications
-bspc rule -a inkscape state=fullscreen
-# bspc rule -a Spotify state=fullscreen
 bspc rule -a Vlc state=fullscreen
 bspc rule -a VirtualBox Manager state=fullscreen
 bspc rule -a VirtualBox Machine state=fullscreen
@@ -50,12 +47,9 @@ bspc rule -a mpv state=fullscreen
 #Floating applications
 bspc rule -a Arandr state=floating
 bspc rule -a feh state=floating
-bspc rule -a Galculator state=floating
-#bspc rule -a Nitrogen state=floating
 bspc rule -a Oblogout state=floating
 bspc rule -a Pavucontrol state=floating
 #bspc rule -a rofi state=floating sticky=on
 
 #open applications on specific workspaces
-#bspc rule -a Firefox desktop='^1' follow=on
-#bspc rule -a Spotify desktop='^10' follow=on
+bspc rule -a firefox desktop='^2'
