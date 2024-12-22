@@ -97,6 +97,7 @@ alias pacman="sudo pacman"
 alias night="redshift -P -O 4500"
 alias wall="feh --bg-scale"
 alias light="redshift -P -O"
+alias commit="git commit -m"
 #fix obvious typo's
 alias cd..='cd ..'
 alias pdw='pwd'
