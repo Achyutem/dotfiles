@@ -1,0 +1,6 @@
+theme = CutiePro
+font-size = 22
+font-family = JetBrainsMono Nerd Font 
+cursor-style = block
+gtk-titlebar = false
+cursor-style-blink = false
