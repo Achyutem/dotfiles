@@ -1,7 +1,3 @@
-#Rofi Fullscreen
-super + F11
-    rofi -theme-str 'window \{width: 100%;height: 100%;\}' -show drun
-
 #################################################################
 # SUPER + ... KEYS
 #################################################################
@@ -11,12 +7,17 @@ super + o
   obsidian
 
 #powermenu
-super + p
-	~/.bin/powermenu
+super + x 
+  ~/.config/rofi/powermenu/type-3/powermenu.sh
 
 #applets
 super + a
-  ~/.bin/appasroot
+  ~/.config/rofi/applets/bin/appasroot.sh
+
+#Rofi
+alt + space
+  	~/.config/rofi/launchers/launcher.sh
+
 
 #visual-studio-code
 super + v
@@ -30,9 +31,6 @@ super + b
 super + d
 	discord
   
-#Rofi
-alt + space
-    rofi -show drun 
 
 #Browser
 super + w
@@ -46,21 +44,21 @@ super + z
 super + c
     bspc node -c
 
-#archlinux-logout
-super + x
-    archlinux-logout
-
 #Rofi theme selector
 super + r
     rofi-theme-selector
 
 #telegram
 super + t
-    telegram-desktop
+    Telegram
 
-#alacritty
+#terminal
 super + Return
-    alacritty
+    ghostty
+
+#terminal floating
+super + shift + Return 
+  bspc rule -a \* -o state=floating && ghostty
 
 #Xkill
 super + Escape
@@ -89,10 +87,6 @@ super + alt + {Left,Right,Up,Down}
 #################################################################
 # CONTROL + ALT KEYS
 #################################################################
-
-#archlinux-tweak-tool
-ctrl + alt + e
-    archlinux-tweak-tool
 
 #Spotify
 super + s
@@ -129,15 +123,6 @@ F2
 #Mute
 F4
     amixer -D pulse set Master 1+ toggle
-
-#########################
-#        POLYBAR        #
-#########################
-
-#Hide polybar
-super + y
-    polybar-msg cmd toggle
-
 
 #################################################################
 # CTRL + ALT KEYS
@@ -213,8 +198,8 @@ ctrl + {Left,Down,Up,Right}
 	bspc node --{focus} {west,south,north,east}
 
 # Contract tiled space
-super + ctrl + {h,j,k,l}
-	bspc node {@east -r -10,@north -r +10,@south -r -10,@west -r +10}
+# super + ctrl + {h,j,k,l}
+# 	bspc node {@east -r -10,@north -r +10,@south -r -10,@west -r +10}
 
 # Focus parent/brother/first/second for preselection
 super + ctrl + {e,r,t,y}
